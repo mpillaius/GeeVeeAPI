@@ -19,6 +19,7 @@ class GeeVeeSMS {
 	private $gv_url = 'https://www.google.com/voice/m';
 	private $sms_url = 'https://www.google.com/voice/m/sms';
 	private $send_url = 'https://www.google.com/voice/m/sendsms';
+	private $verify_url = 'https://accounts.google.com/LoginVerification';
 	private $cookies_file;
 
 	public function __construct($email_address, $password){
@@ -29,8 +30,11 @@ class GeeVeeSMS {
 
 	public function sendSMS($phone, $message){
 		//login
-		$this->gvLogin();
-
+		$login = $this->gvLogin();
+		//echo $login;
+	
+		$fields = $this->getFormFields($login, false);
+		
 		//init the sms page to get the _rnr_se
 		$init_sms = $this->curlGet($this->sms_url);
 
@@ -48,9 +52,10 @@ class GeeVeeSMS {
 		$this->refer_url = $this->sms_url;
 		$send_sms = $this->curlPost($this->send_url, $post_string, $refer_url);
 
-		print_r($send_sms);
+		//print_r($send_sms);
 		//close and delete temp cookie file
 		fclose($temp_file);
+		
 	}
 
 	private function gvLogin(){	
@@ -70,6 +75,8 @@ class GeeVeeSMS {
 
 		//do login
 		$curl_login = $this->curlPost($this->login_url, $post_string, $this->refer_url);
+
+		return $curl_login;
 	}
 
 	private function curlGet($url){
