@@ -1,0 +1,47 @@
+/* The following CSS prevents Safari from changing the font size when the device is rotated - you may or may not need this */
+body, html {
+-webkit-text-size-adjust: 100%; /* prevents text size from changing on orientation change */
+}
+
+body{
+    overflow: hidden;
+}
+#number{
+    padding: 20px;
+    padding-right: 0;
+    vertical-align: middle;
+    font-size: 22pt;
+    height: 35px;
+    overflow-x: hidden;
+    text-align: center;
+}
+#delete{
+    color: #0099cc;
+    font-size: 22pt;
+    margin-top: -55px;
+    position: absolute;
+}
+#pad{
+    border-spacing: 25px 15px;
+}
+#pad tr td{
+    margin-left: 20px;
+    border: 1px solid #0099CC;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16pt;
+}
+#pad tr td.pressed{
+	background: #0099CC;
+}
+#pad .call-icon + td, #pad tr:last-child td:first-child{
+    border: 0;
+}
+#pad .call-icon{
+    background: url('images/mac_and_ios_phone_icon.png');
+    border: 0;
+    background-size: 66px;
+}
