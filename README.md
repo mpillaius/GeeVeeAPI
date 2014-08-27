@@ -1,6 +1,6 @@
-GeeVeeSMS
+GeeVeeAPI
 =========
-GeeVeeSMS allows you to use a Google Voice account to send real SMS messages to phone numbers. There has been a lot of similar classes and libraries but due to some recent changes that Google has made to their Google Voice and other products, most of these classes no longer work. I enountered this problem so I decided to write my own. Feel free to use and modify
+GeeVeeAPI allows you to use a Google Voice account to send real SMS messages to phone numbers and call phone numbers using your second number that is registered with your account. There has been a lot of similar classes and libraries but due to some recent changes that Google has made to their Google Voice and other products, most of these classes no longer work. I enountered this problem so I decided to write my own. Feel free to use and modify
 
 How to use
 ==========
