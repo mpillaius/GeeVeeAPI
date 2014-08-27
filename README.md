@@ -6,7 +6,7 @@ How to use
 ==========
 Include the class file
 ```php
-include 'class.geeveesms.php';
+include 'class.geeveeapi.php';
 ```
 
 Then initialize it with your account info
@@ -14,9 +14,14 @@ Then initialize it with your account info
 $geevee = new GeeVeeSMS("YOUR EMAIL ADDRESS", "YOU PASSWORD");
 ```
 
-To send sms call the function sendSMS
+To send sms, call the function sendSMS
 ```php
 $geevee->sendSMS("312-123-1234", "Hi there, this is an SMS!");
+```
+
+To initialize a call to your phone number that is listed on your google voice account, call the function call
+```php
+$geevee->call('312-123-1234', 'PHONE NUMBER THAT IS LISTED ON GOOGLE VOICE ACCOUNT');
 ```
 
 IMPORTANT INFO
