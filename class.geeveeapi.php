@@ -19,29 +19,51 @@ class GeeVeeSMS {
 	private $gv_url = 'https://www.google.com/voice/m';
 	private $sms_url = 'https://www.google.com/voice/m/sms';
 	private $send_url = 'https://www.google.com/voice/m/sendsms';
+	private $call_url = 'https://www.google.com/voice/m/callsms';
+	private $send_call = 'https://www.google.com/voice/m/sendcall';
 	private $verify_url = 'https://accounts.google.com/LoginVerification';
+	private $token;
 	private $cookies_file;
+
+	private function getToken(){
+		$page = $this->curlGet($this->sms_url);
+                $fields = $this->getFormFields($page);
+		return $fields['_rnr_se'];
+	}
 
 	public function __construct($email_address, $password){
 		$this->email_address = $email_address;
 		$this->password = $password;
 		$this->cookies_file = tempnam(sys_get_temp_dir(), 'GeeVee-cookies');
+
+		//login
+		$this->gvLogin();
+		$this->token = $this->getToken();
+	}
+
+	public function call($phone, $from){
+		//set fields
+                $fields['_rnr_se'] = $this->token;
+                $fields['number'] = $phone;
+                $fields['phone'] = $from;
+
+                $post_string = '';
+                foreach($fields as $key => $value) {
+                        $post_string .= $key . '=' . urlencode($value) . '&';
+                }
+                $post_string = substr($post_string, 0, -1);
+
+                //send the sms
+                $this->refer_url = $this->call_url;
+                $send_call = $this->curlPost($this->send_call, $post_string, $this->refer_url);
 	}
 
 	public function sendSMS($phone, $message){
-		//login
-		$login = $this->gvLogin();
-		//echo $login;
-	
-		$fields = $this->getFormFields($login, false);
-		
-		//init the sms page to get the _rnr_se
-		$init_sms = $this->curlGet($this->sms_url);
-
 		//get/set the fields
-		$fields = $this->getFormFields($init_sms);
+		$fields['_rnr_se'] = $this->token;
 		$fields['number'] = $phone;
 		$fields['smstext'] = $message;
+
 		$post_string = '';
 		foreach($fields as $key => $value) {
     			$post_string .= $key . '=' . urlencode($value) . '&';
@@ -50,12 +72,7 @@ class GeeVeeSMS {
 
 		//send the sms
 		$this->refer_url = $this->sms_url;
-		$send_sms = $this->curlPost($this->send_url, $post_string, $refer_url);
-
-		//print_r($send_sms);
-		//close and delete temp cookie file
-		fclose($temp_file);
-		
+		$send_sms = $this->curlPost($this->send_url, $post_string, $this->refer_url);
 	}
 
 	private function gvLogin(){	
