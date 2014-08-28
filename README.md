@@ -24,6 +24,12 @@ To initialize a call to your phone number that is listed on your google voice ac
 $geevee->call('312-123-1234', 'PHONE NUMBER THAT IS LISTED ON GOOGLE VOICE ACCOUNT');
 ```
 
+Images of Dialer (still needs a lot of work)
+============================================
+![alt tag](http://gv.hbattat.com/images/geevee_1.png)
+![alt tag](http://gv.hbattat.com/images/geevee_2.png)
+![alt tag](http://gv.hbattat.com/images/geevee_3.png)
+
 IMPORTANT INFO
 ==============
 Make sure your hosting or server settings allow CURLOPT_FOLLOWLOCATION
