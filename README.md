@@ -26,9 +26,9 @@ $geevee->call('312-123-1234', 'PHONE NUMBER THAT IS LISTED ON GOOGLE VOICE ACCOU
 
 Images of Dialer (still needs a lot of work)
 ============================================
-![alt tag](http://gv.hbattat.com/images/geevee_1.jpg)
-![alt tag](http://gv.hbattat.com/images/geevee_2.jpg)
-![alt tag](http://gv.hbattat.com/images/geevee_3.jpg)
+![alt tag](http://gv.hbattat.com/images/geevee_1.jpg =200x)
+![alt tag](http://gv.hbattat.com/images/geevee_2.jpg =200x)
+![alt tag](http://gv.hbattat.com/images/geevee_3.jpg =200x)
 
 IMPORTANT INFO
 ==============
